@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>새 글</h2>
+<form method="post">
+  {{ form.hidden_tag() }}
+  <div class="form-row">
+    {{ form.title.label }} {{ form.title(size=64) }}
+  </div>
+  <div class="form-row">
+    {{ form.body.label }} {{ form.body(rows=8, cols=80) }}
+  </div>
+  <div class="form-row">
+    {{ form.submit() }}
+  </div>
+</form>
+{% endblock %}

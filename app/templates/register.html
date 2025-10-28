@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>회원가입</h2>
+<form method="post">
+  {{ form.hidden_tag() }}
+  <div class="form-row">
+    {{ form.email.label }} {{ form.email(size=32) }}
+  </div>
+  <div class="form-row">
+    {{ form.name.label }} {{ form.name(size=32) }}
+  </div>
+  <div class="form-row">
+    {{ form.password.label }} {{ form.password(size=32) }}
+  </div>
+  <div class="form-row">
+    {{ form.password2.label }} {{ form.password2(size=32) }}
+  </div>
+  <div class="form-row">
+    {{ form.submit() }}
+  </div>
+</form>
+{% endblock %}

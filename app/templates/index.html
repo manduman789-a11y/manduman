@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>게시글</h2>
+{% if posts %}
+  <ul class="post-list">
+  {% for p in posts %}
+    <li>
+      <a href="{{ url_for('main.post_detail', post_id=p.id) }}">{{ p.title }}</a>
+      <div class="meta">{{ p.author.name }} · {{ p.created_at.strftime("%Y-%m-%d %H:%M") }}</div>
+    </li>
+  {% endfor %}
+  </ul>
+{% else %}
+  <p>아직 게시글이 없습니다.</p>
+{% endif %}
+{% endblock %}

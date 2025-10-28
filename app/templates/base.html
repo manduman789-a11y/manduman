@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>flask-board</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <header class="container">
+    <h1><a href="/">flask-board</a></h1>
+    <nav>
+      {% if current_user.is_authenticated %}
+        <span>{{ current_user.name }}</span>
+        <a href="{{ url_for('main.new_post') }}">새 글</a>
+        <a href="{{ url_for('auth.logout') }}">로그아웃</a>
+      {% else %}
+        <a href="{{ url_for('auth.login') }}">로그인</a>
+        <a href="{{ url_for('auth.register') }}">회원가입</a>
+      {% endif %}
+    </nav>
+  </header>
+  <main class="container">
+    {% with messages = get_flashed_messages(with_categories=True) %}
+      {% if messages %}
+        {% for category, message in messages %}
+          <div class="flash {{ category }}">{{ message }}</div>
+        {% endfor %}
+      {% endif %}
+    {% endwith %}
+    {% block content %}{% endblock %}
+  </main>
+  <footer class="container">
+    <small>© flask-board</small>
+  </footer>
+</body>
+</html>
